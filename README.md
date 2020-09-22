@@ -47,12 +47,12 @@ __Инкапсуляция__ – это свойство системы, поз�
 >Теперь вернёмся в сегодняшний день к современным чудесам автопрома с коробкой-автоматом. На самом деле, по сути, ничего не изменилось. Бензонасос всё так же поставляет бензин в двигатель, дифференциалы обеспечивают поворот колёс на различающиеся углы, коленвал превращает поступательное движение поршня во вращательное движение колёс. Прогресс в другом. Сейчас все эти действия скрыты от пользователя и позволяют ему крутить руль и нажимать на педаль газа, не задумываясь, что в это время происходит с инжектором, дроссельной заслонкой и распредвалом. Именно сокрытие внутренних процессов, происходящих в автомобиле, позволяет эффективно его использовать даже тем, кто не является профессионалом-автомехаником с двадцатилетним стажем. Это сокрытие в ООП носит название инкапсуляции.
 
 Пример:
-```java
+```C#
 public class SomePhone {
 
     private int year;
-    private String company;
-    public SomePhone(int year, String company) {
+    private string company;
+    public SomePhone(int year, string company) {
         this.year = year;
         this.company = company;
     }
@@ -62,11 +62,11 @@ public class SomePhone {
     }
     public void call() {
         openConnection();
-        System.out.println("Вызываю номер");
+        Console.WriteLine("Вызываю номер");
     }
 
     public void ring() {
-        System.out.println("Дзынь-дзынь");
+        Console.WriteLine("Дзынь-дзынь");
     }
 
 }
@@ -92,8 +92,8 @@ __Наследование__ – это свойство системы, поз�
 
 Пример:
 Рассмотрим пример создания класса смартфон с помощью наследования. Все беспроводные телефоны работают от аккумуляторных батарей, которые имеют определенный ресурс работы в часах. Поэтому добавим это свойство в класс беспроводных телефонов:
-```java
-public abstract class WirelessPhone extends AbstractPhone {
+```C#
+public abstract class WirelessPhone : AbstractPhone {
 
     private int hour;
 
@@ -104,36 +104,35 @@ public abstract class WirelessPhone extends AbstractPhone {
 }
 ```
 Сотовые телефоны наследуют свойства беспроводного телефона, мы также добавили в этот класс реализацию методов call и ring:
-```java
-public class CellPhone extends WirelessPhone {
+```C#
+public class CellPhone : WirelessPhone {
     public CellPhone(int year, int hour) {
         super(year, hour);
     }
 
-    @Override
-    public void call(int outputNumber) {
-        System.out.println("Вызываю номер " + outputNumber);
+    
+    public void override call(int outputNumber) {
+        Console.WriteLine("Вызываю номер " + outputNumber);
     }
 
-    @Override
-    public void ring(int inputNumber) {
-        System.out.println("Вам звонит абонент " + inputNumber);
+    public void override ring(int inputNumber) {
+        Console.WriteLine("Вам звонит абонент " + inputNumber);
     }
 }
 ```
 И, наконец, класс смартфон, который в отличие от классических сотовых телефонов имеет полноценную операционную систему. В смартфон можно добавлять новые программы, поддерживаемые данной операционной системой, расширяя, таким образом, его функциональность. С помощью кода класс можно описать так:
-```java
-public class Smartphone extends CellPhone {
+```C#
+public class Smartphone : CellPhone {
 
-    private String operationSystem;
+    private string operationSystem;
 
-    public Smartphone(int year, int hour, String operationSystem) {
+    public Smartphone(int year, int hour, string operationSystem) {
         super(year, hour);
         this.operationSystem = operationSystem;
     }
     
-    public void install(String program){
-        System.out.println("Устанавливаю " + program + "для" + operationSystem);
+    public void install(string program){
+        Console.WriteLine("Устанавливаю " + program + "для" + operationSystem);
     }
 
 }
@@ -164,11 +163,11 @@ _Полиморфная переменная_, это переменная, ко
 
 Давайте представим, что нам в программе нужно описать пользователя, который может пользоваться любыми моделями телефона, чтобы позвонить другому пользователю. Вот как можно это сделать:
 
-```java
+```C#
 public class User {
-    private String name;
+    private string name;
 
-    public User(String name) {
+    public User(string name) {
         this.name = name;
     }
 
@@ -180,81 +179,75 @@ public class User {
 ```
 
 Теперь опишем различные модели телефонов. Одна из первых моделей телефонов:
-```java
-public class ThomasEdisonPhone extends AbstractPhone {
+```C#
+public class ThomasEdisonPhone : AbstractPhone {
 
     public ThomasEdisonPhone(int year) {
         super(year);
     }
 
-    @Override
-    public void call(int outputNumber) {
-        System.out.println("Вращайте ручку");
-        System.out.println("Сообщите номер абонента, сэр");
+    public void override call(int outputNumber) {
+        Console.WriteLine("Вращайте ручку");
+        Console.WriteLine("Сообщите номер абонента, сэр");
     }
 
-    @Override
-    public void ring(int inputNumber) {
-        System.out.println("Телефон звонит");
+    public void verride ring(int inputNumber) {
+        Console.WriteLine("Телефон звонит");
     }
 }
 ```
 
 Обычный стационарный телефон:
 
-```java
-public class Phone extends AbstractPhone {
+```C#
+public class Phone : AbstractPhone {
 
     public Phone(int year) {
         super(year);
     }
 
-    @Override
-    public void call(int outputNumber) {
-        System.out.println("Вызываю номер" + outputNumber);
+    public void override call(int outputNumber) {
+        Console.WriteLine("Вызываю номер" + outputNumber);
     }
 
-    @Override
-    public void ring(int inputNumber) {
-        System.out.println("Телефон звонит");
+    public void override ring(int inputNumber) {
+        Console.WriteLine("Телефон звонит");
     }
 }
 ```
 
 И, наконец, крутой видеотелефон:
 
-```java
-public class VideoPhone extends AbstractPhone {
+```C#
+public class VideoPhone : AbstractPhone {
 
     public VideoPhone(int year) {
         super(year);
     }
 
-    @Override
-    public void call(int outputNumber) {
-        System.out.println("Подключаю видеоканал для абонента " + outputNumber);
+    public void override call(int outputNumber) {
+        Console.WriteLine("Подключаю видеоканал для абонента " + outputNumber);
     }
 
-    @Override
-    public void ring(int inputNumber) {
-        System.out.println("У вас входящий видеовызов..." + inputNumber);
+    public void override ring(int inputNumber) {
+        Console.WriteLine("У вас входящий видеовызов..." + inputNumber);
     }
 }
 ```
 
 Создадим объекты в методе main() и протестируем метод callAnotherUser:
 
-```java
+```C#
 AbstractPhone firstPhone = new ThomasEdisonPhone(1879);
 AbstractPhone phone = new Phone(1984);
 AbstractPhone videoPhone=new VideoPhone(2018);
 User user = new User("Андрей");
-user.callAnotherUser(224466,firstPhone);
+user.callAnotherUser(224466, firstPhone);
 // Вращайте ручку
 //Сообщите номер абонента, сэр
-user.callAnotherUser(224466,phone);
+user.callAnotherUser(224466, phone);
 //Вызываю номер 224466
-user.callAnotherUser(224466,videoPhone);
+user.callAnotherUser(224466, videoPhone);
 //Подключаю видеоканал для абонента 224466
 ```
 
@@ -272,7 +265,7 @@ _Абстрагирование_ – это способ выделить наб
 >Представьте, что водитель едет в автомобиле по оживлённому участку движения. Понятно, что в этот момент он не будет задумываться о химическом составе краски автомобиля, особенностях взаимодействия шестерёнок в коробке передач или влияния формы кузова на скорость (разве что, автомобиль стоит в глухой пробке и водителю абсолютно нечем заняться). Однако, руль, педали, указатель поворота он будет использовать регулярно.
 
 Пример:
-```java
+```C#
 // Abstract class
 abstract class Animal {
     // Abstract method (does not have a body)
@@ -280,15 +273,15 @@ abstract class Animal {
 
     // Regular method
     public void sleep() {
-        System.out.println("Zzz");
+        Console.WriteLine("Zzz");
     }
 }
 
 // Subclass (inherit from Animal)
-class Pig extends Animal {
+class Pig : Animal {
     public void animalSound() {
         // The body of animalSound() is provided here
-        System.out.println("The pig says: wee wee");
+        Console.WriteLine("The pig says: wee wee");
     }
 }
 
@@ -377,9 +370,3 @@ __«имеет»__ подразумевает ассоциацию (агрега
 
 [к оглавлению](#ООП)
 
-# Источники
-+ [DevColibri](http://devcolibri.com/720)
-+ [Хабрахабр](https://habrahabr.ru/post/87119/)
-+ [Википедия](https://ru.wikipedia.org/wiki/Объектно-ориентированное_программирование)
-
-[Вопросы для собеседования](README.md)
