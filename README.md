@@ -1,4 +1,6 @@
-# ООП
+# OOP - Object Oriented Programming 
+
+_Examples of using OOP (in file .py) used comments in English_
 
 **Настоящая статья была написана с использованием Java, но здесь я изменил для Python**
 
